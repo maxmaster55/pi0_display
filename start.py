@@ -36,5 +36,5 @@ buttonB.switch_to_input()
 
 # Main loop:
 while True:
-    time.sleep(.1)
-    backlight.value += 1
+    backlight.value = not backlight.value
+    time.sleep(.3)
