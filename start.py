@@ -1,9 +1,6 @@
-# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
-# SPDX-License-Identifier: MIT
-
+#!/bin/python3
 import digitalio
-import board
-
+import board 
 from adafruit_rgb_display.rgb import color565
 from adafruit_rgb_display import st7789
 
@@ -28,7 +25,7 @@ display = st7789.ST7789(
 
 backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
-backlight.value = True
+backlight.value = False
 buttonA = digitalio.DigitalInOut(board.D23)
 buttonB = digitalio.DigitalInOut(board.D24)
 buttonA.switch_to_input()
@@ -36,8 +33,9 @@ buttonB.switch_to_input()
 
 
 def get_public_ip():
-
+    pass
 
 
 # Main loop:
 while True:
+    pass
