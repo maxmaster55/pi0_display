@@ -4,6 +4,7 @@ import board
 from adafruit_rgb_display.rgb import color565
 from adafruit_rgb_display import st7789
 from utils.internet import get_public_ip
+from utils import screenadd
 import time
 
 # Configuration for CS and DC pins for Raspberry Pi
@@ -19,22 +20,23 @@ display = st7789.ST7789(
     dc=dc_pin,
     rst=reset_pin,
     baudrate=BAUDRATE,
-    width=135,
-    height=240,
+    width=240,
+    height=135,
     x_offset=53,
     y_offset=40,
 )
 
 backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
-backlight.value = False
+backlight.value = True
 buttonA = digitalio.DigitalInOut(board.D23)
 buttonB = digitalio.DigitalInOut(board.D24)
 buttonA.switch_to_input()
 buttonB.switch_to_input()
 
 
+screenadd.text(display, "test 1")
+
 # Main loop:
 while True:
-    backlight.value = not backlight.value
-    time.sleep(.3)
+    time.sleep(1)

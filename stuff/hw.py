@@ -89,7 +89,8 @@ draw.rectangle(
 )
 
 # Load a TTF Font
-font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", FONTSIZE)
+font = ImageFont.truetype(
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", FONTSIZE)
 
 # Draw Some Text
 text = "Hello World!"
