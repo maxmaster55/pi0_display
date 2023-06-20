@@ -1,11 +1,13 @@
 #!/bin/python3
 import digitalio
-import board 
+import board
 from adafruit_rgb_display.rgb import color565
 from adafruit_rgb_display import st7789
+from utils.internet import get_public_ip
+import time
 
 # Configuration for CS and DC pins for Raspberry Pi
-print("started")
+print("Display started")
 cs_pin = digitalio.DigitalInOut(board.CE0)
 dc_pin = digitalio.DigitalInOut(board.D25)
 reset_pin = None
@@ -32,10 +34,7 @@ buttonA.switch_to_input()
 buttonB.switch_to_input()
 
 
-def get_public_ip():
-    pass
-
-
 # Main loop:
 while True:
-    pass
+    time.sleep(.1)
+    backlight.value += 1
