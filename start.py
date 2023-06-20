@@ -34,7 +34,7 @@ buttonB = digitalio.DigitalInOut(board.D24)
 buttonA.switch_to_input()
 buttonB.switch_to_input()
 
-
+screenadd.fix_screen_rotation(display)
 screenadd.text(display, "test 1")
 
 # Main loop:

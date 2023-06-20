@@ -9,8 +9,14 @@ font = ImageFont.truetype(
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", FONTSIZE)
 
 
-def image(display, image):
+def fix_screen_rotation(display):
+    h = display.hight
+    display.hight = display.width
+    display.width = h
+    return display
 
+
+def image(display, image):
     pass
 
 
