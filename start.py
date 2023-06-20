@@ -4,7 +4,7 @@ import board
 from adafruit_rgb_display.rgb import color565
 from adafruit_rgb_display import st7789
 from utils.internet import get_public_ip
-from utils import screenadd
+from utils import screen
 import time
 
 # Configuration for CS and DC pins for Raspberry Pi
@@ -22,6 +22,7 @@ display = st7789.ST7789(
     baudrate=BAUDRATE,
     width=135,
     height=240,
+    rotation=90,
     x_offset=53,
     y_offset=40,
 )
@@ -34,9 +35,8 @@ buttonB = digitalio.DigitalInOut(board.D24)
 buttonA.switch_to_input()
 buttonB.switch_to_input()
 
-screenadd.fix_screen_rotation(display)
-screenadd.text(display, "test 1")
+screen.show_text_centered(display, "A7A what is this")
 
-# Main loop:
+
 while True:
-    time.sleep(1)
+    pass

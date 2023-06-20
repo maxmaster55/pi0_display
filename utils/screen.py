@@ -20,7 +20,7 @@ def show_text(display, text, loc=(0,0)):
         loc,
         text,
         font=font,
-        fill=(255, 255, 0),
+        fill=(255, 255, 255),
     )
     
     display.image(back)
