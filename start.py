@@ -1,11 +1,14 @@
 #!/bin/python3
 import digitalio
 import board
+import signal
+from core.handlers import exit_handler
 from adafruit_rgb_display.rgb import color565
 from adafruit_rgb_display import st7789
-from utils.internet import get_public_ip
-from utils import screen
+from core.internet import get_public_ip
+from core import screen
 import time
+
 
 # Configuration for CS and DC pins for Raspberry Pi
 print("Display started")
@@ -35,8 +38,14 @@ buttonB = digitalio.DigitalInOut(board.D24)
 buttonA.switch_to_input()
 buttonB.switch_to_input()
 
-screen.show_text_centered(display, "A7A what is this")
+# registring the exit handler
+signal.signal(signal.SIGINT, exit_handler(display, backlight))
+
+screen.show_text_centered(display, "0_pi")
+time.sleep(.5)
 
 
+i = 0
 while True:
-    pass
+    screen.show_text_centered(display, i)
+    i += 1
