@@ -1,17 +1,20 @@
 from PIL import Image, ImageDraw, ImageFont
 
 
+DEF_FONT_SIZE = 22
+
+
 class Screen:
-    DEF_FONT_SIZE = 24
     default_font = ImageFont.truetype(
         "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", DEF_FONT_SIZE)
 
     def __init__(self, display):
         self.display = display
 
-    def show_text(self, text, font=default_font, loc=(0, 0)):
+    def show_text(self, text, font_size=DEF_FONT_SIZE, loc=(0, 0)):
         back = Image.new("RGB", (self.display.height, self.display.width))
         draw = ImageDraw.Draw(back)
+        font = self.default_font.font_variant(size=font_size)
 
         draw.text(
             loc,
@@ -22,20 +25,20 @@ class Screen:
 
         self.display.image(back)
 
-    def show_text_centered(self, text, fontsize=22):
+    def show_text_centered(self, text, font_size=DEF_FONT_SIZE):
         # inverted dimentions because we are rotating the screen
-        text = str(text)
-        font = self.default_font.font_variant(size=fontsize)
+        font = self.default_font.font_variant(size=font_size)
         (font_width, font_height) = font.getsize(text)
         center = (self.display.height // 2 - font_width // 2,
                   self.display.width // 2 - font_height // 2)
 
-        self.show_text(text, font, center)
+        self.show_text(text, font_size, center)
 
 
 class Picker:
-    def __init__(self, options, indicator="=>"):
+    def __init__(self, options, indicator=">"):
         self.options = options
+        self.indicator = indicator
         self.length = len(options)
         self.current = 0  # index of the current option
 
@@ -54,7 +57,7 @@ class Picker:
     def get_current(self):
         return self.options[self.current]
 
-    def show_all(self, screen):
+    def show_all(self, screen, font_size=DEF_FONT_SIZE):
         ret_str = ""
         for i, option in enumerate(self.options):
             if i == self.current:
@@ -62,4 +65,4 @@ class Picker:
             else:
                 ret_str += f"  :{option}\n"
 
-        screen.show_text_centered(ret_str)
+        screen.show_text(ret_str, font_size=18)

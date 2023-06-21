@@ -6,7 +6,7 @@ from core.handlers import exit_handler
 from adafruit_rgb_display.rgb import color565
 from adafruit_rgb_display import st7789
 from core.internet import get_public_ip
-from core.screen import Screen
+from core.screen import Screen, Picker
 import time
 
 
@@ -46,5 +46,14 @@ screen.show_text_centered("0_pi\ntest2")
 time.sleep(.5)
 
 
-i = 0
+op = ["test1", "test2", "some shit number3"]
+picker = Picker(op)
+
 while True:
+    picker.show_all(screen)
+    if not buttonA.value:
+        picker.prev()
+    if not buttonB.value:
+        picker.next()
+    time.sleep(.1)
+
