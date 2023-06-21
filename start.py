@@ -42,11 +42,10 @@ screen = Screen(display)
 # registring the exit handler
 signal.signal(signal.SIGINT, exit_handler(screen, backlight))
 
-screen.show_text_centered("0_pi")
+screen.show_text_centered("0_pi\ntest2")
 time.sleep(.5)
 
 
 i = 0
 while True:
-    screen.show_text_centered(display, i)
-    i += 1
+    pass
