@@ -48,4 +48,3 @@ time.sleep(.5)
 
 i = 0
 while True:
-    pass
