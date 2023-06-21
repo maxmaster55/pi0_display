@@ -42,9 +42,10 @@ screen = Screen(display)
 # registring the exit handler
 signal.signal(signal.SIGINT, exit_handler(screen, backlight))
 
-screen.show_text_centered("0_pi\ntest2")
+screen.show_text_centered("0_pi")
 time.sleep(.5)
 
+long_press_duration = 2.0
 
 op = ["test1", "test2", "some shit number3"]
 picker = Picker(op)
@@ -52,8 +53,13 @@ picker = Picker(op)
 while True:
     picker.show_all(screen)
     if not buttonA.value:
-        picker.prev()
+        start_time = time.monotonic()
+        while not buttonA.value:
+            if time.monotonic() - start_time > long_press_duration:
+                print("Clicked")
+                break
+        if time.monotonic() - start_time < long_press_duration:
+            picker.prev()
     if not buttonB.value:
         picker.next()
     time.sleep(.1)
-
