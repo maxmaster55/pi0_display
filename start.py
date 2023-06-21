@@ -38,9 +38,9 @@ buttonB = digitalio.DigitalInOut(board.D24)
 buttonA.switch_to_input()
 buttonB.switch_to_input()
 
-# registring the exit handler
-signal.signal(signal.SIGINT, exit_handler(display, backlight))
 screen = Screen(display)
+# registring the exit handler
+signal.signal(signal.SIGINT, exit_handler(screen, backlight))
 
 screen.show_text_centered("0_pi")
 time.sleep(.5)
