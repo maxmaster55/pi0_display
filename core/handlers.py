@@ -1,6 +1,5 @@
 import sys
 import time
-from .screen import show_text_centered
 
 
 def exit_signal_handler(sig, frame, screen, backlight):
