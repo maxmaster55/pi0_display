@@ -45,7 +45,7 @@ signal.signal(signal.SIGINT, exit_handler(screen, backlight))
 screen.show_text_centered("0_pi")
 time.sleep(.5)
 
-long_press_duration = 0.5
+long_press_duration = 0.4
 
 op = ["test1", "test2", "some shit number3"]
 picker = Picker(op)
