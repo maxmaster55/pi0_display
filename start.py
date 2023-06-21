@@ -47,19 +47,31 @@ time.sleep(.5)
 
 long_press_duration = 0.4
 
-op = ["test1", "test2", "some shit number3"]
+op = ["Fagar el gam3aa", "Hakar el GPAs", "Safar", "e3mel wa7ed"]
 picker = Picker(op)
+
+
+def check_long_press(button):
+    start_time = time.monotonic()
+    while not button.value:
+        if time.monotonic() - start_time > long_press_duration:
+            print("Clicked")
+            break
+    if time.monotonic() - start_time < long_press_duration:
+        return True
+    return False
+
 
 while True:
     picker.show_all(screen)
     if not buttonA.value:
-        start_time = time.monotonic()
-        while not buttonA.value:
-            if time.monotonic() - start_time > long_press_duration:
-                print("Clicked")
-                break
-        if time.monotonic() - start_time < long_press_duration:
+        if check_long_press(buttonA):
+            pass  # do something on long press
+        else:
             picker.prev()
     if not buttonB.value:
-        picker.next()
+        if check_long_press(buttonB):
+            pass  # do something on long press
+        else:
+            picker.next()
     time.sleep(.1)
