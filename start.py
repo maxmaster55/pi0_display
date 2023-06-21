@@ -6,7 +6,7 @@ from core.handlers import exit_handler
 from adafruit_rgb_display.rgb import color565
 from adafruit_rgb_display import st7789
 from core.internet import get_public_ip
-from core import screen
+from core.screen import Screen
 import time
 
 
@@ -40,8 +40,9 @@ buttonB.switch_to_input()
 
 # registring the exit handler
 signal.signal(signal.SIGINT, exit_handler(display, backlight))
+screen = Screen(display)
 
-screen.show_text_centered(display, "0_pi")
+screen.show_text_centered("0_pi")
 time.sleep(.5)
 
 
