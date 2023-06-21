@@ -58,8 +58,8 @@ def check_long_press(button):
             print("Clicked")
             break
     if time.monotonic() - start_time < long_press_duration:
-        return True
-    return False
+        return False
+    return True
 
 
 while True:
