@@ -48,5 +48,6 @@ time.sleep(.5)
 
 i = 0
 while True:
-    screen.show_text_centered(display, i)
+    screen.show_text_centered(i)
     i += 1
+    time.sleep(1)

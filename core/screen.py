@@ -12,7 +12,7 @@ class Screen:
     def show_text(self, text, font=default_font, loc=(0, 0)):
         back = Image.new("RGB", (self.display.height, self.display.width))
         draw = ImageDraw.Draw(back)
-        # inverted dimentions because we are rotating the screen
+
         draw.text(
             loc,
             text,
@@ -31,3 +31,35 @@ class Screen:
                   self.display.width // 2 - font_height // 2)
 
         self.show_text(text, font, center)
+
+
+class Picker:
+    def __init__(self, options, indicator="=>"):
+        self.options = options
+        self.length = len(options)
+        self.current = 0  # index of the current option
+
+    def next(self):
+        if self.current < self.length - 1:
+            self.current += 1
+        else:
+            self.current = 0
+
+    def prev(self):
+        if self.current > 0:
+            self.current -= 1
+        else:
+            self.current = self.length - 1
+
+    def get_current(self):
+        return self.options[self.current]
+
+    def show_all(self, screen):
+        ret_str = ""
+        for i, option in enumerate(self.options):
+            if i == self.current:
+                ret_str += f"{self.indicator}:{option}\n"
+            else:
+                ret_str += f"  :{option}\n"
+
+        screen.show_text_centered(ret_str)
